@@ -74,6 +74,18 @@ const convertedWeight = (kg, planetSurfaceGravity) => {
 
 
 
+//FUNCTION FOR REPEATED STYLES
+
+const wrongInputFeedbackStyle = (element) => {
+  element.style.color = 'white';
+  element.style.fontSize = '14px'
+  element.style.backgroundColor = 'hsla(0, 87%, 59%, 0.44)'
+  element.style.padding = '0.5em'
+
+}
+
+
+
 
 //THE INTERACTION UPON CLICKING THE BUTTON
 let button = document.querySelector('#button')
@@ -82,7 +94,6 @@ let button = document.querySelector('#button')
 
 
 button.addEventListener ('click', (e) => {
-
 
 //details inputted
 let inputFeedback = document.querySelector('.input-feedback')
@@ -106,7 +117,7 @@ let flexItemDescription = document.querySelector('.flex-item-description')
 
 let weightIsNotFilledOut = false;
 
-   if (massInKilogram === ''){
+   if (massInKilogram === '' || isNaN(massInKilogram) === true){
      weightIsNotFilledOut = true
    }
 
@@ -119,10 +130,8 @@ let weightIsNotFilledOut = false;
        convertedWeightText.innerHTML = ''
        weightUnit.innerHTML = ''
        inputFeedback.innerHTML = `You haven't chosen the planet yet`
-       inputFeedback.style.color = 'white'
-       inputFeedback.style.fontSize = '14px'
-       inputFeedback.style.backgroundColor = 'hsla(0, 87%, 59%, 0.44)'
-       inputFeedback.style.padding = '0.5em'
+       wrongInputFeedbackStyle(inputFeedback)
+      
 
      } else if (selectedPlanet.selectedIndex !== -1) {
 
@@ -143,9 +152,9 @@ let weightIsNotFilledOut = false;
       planetImage.style.marginTop = '2rem'
 
       if (chosenPlanet === 'Saturn') {
-        planetImage.style.width = '100%'
+        planetImage.style.Width = '100%'
       }  else {
-        planetImage.style.width = '100%'
+        planetImage.style.Width = '90%'
       }
        
      
@@ -162,6 +171,7 @@ let weightIsNotFilledOut = false;
       if(mediaQuery900px.matches) {
         flexItemDescription.style.display = 'absolute'
         flexItemDescription.style.padding = '5px'
+        planetImage.style.width = '90%'
     
       }
 
@@ -211,20 +221,13 @@ let weightIsNotFilledOut = false;
         convertedWeightText.innerHTML = ''
         weightUnit.innerHTML = ''
         inputFeedback.innerHTML = `You haven't filled out the needed information yet`
-        inputFeedback.style.color = 'white'
-        inputFeedback.style.fontSize = '14px'
-        inputFeedback.style.backgroundColor = 'hsla(0, 87%, 59%, 0.44)'
-        inputFeedback.style.padding = '0.5em'
+        wrongInputFeedbackStyle(inputFeedback)
       } else if (selectedPlanet.selectedIndex !== -1 || selectedPlanet.selectedIndex !== '0') {
         yourWeightIs.innerHTML = ''
         convertedWeightText.innerHTML = ''
         weightUnit.innerHTML = ''
         inputFeedback.innerHTML = 'Your weight is required'
-        inputFeedback.style.color = 'white'
-        inputFeedback.style.fontSize = '14px'
-        inputFeedback.style.backgroundColor = 'hsla(0, 87%, 59%, 0.44)'
-        inputFeedback.style.padding = '0.5em'
-
+        wrongInputFeedbackStyle(inputFeedback)
       } 
     }
 
